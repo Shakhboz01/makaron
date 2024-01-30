@@ -9,7 +9,6 @@ class ProductEntry < ApplicationRecord
   has_one :provider, through: :delivery_from_counterparty
   has_one :user, through: :delivery_from_counterparty
   belongs_to :product
-  belongs_to :storage, optional: true
   validates :amount, comparison: { greater_than: 0 }
   validates :buy_price, comparison: { greater_than_or_equal_to: 0 }
   validates_presence_of :buy_price, unless: -> { local_entry }

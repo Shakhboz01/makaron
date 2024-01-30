@@ -67,7 +67,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= button_to "Выйти", destroy_user_session_url, method: :delete, data: { confirm: strip_tags('вы уверены?') }, class: "nav-link styled-delete-button", style: 'color: black' %>
           <div class="dropdown-divider"></div>
-          <a style= 'color: black' class="nav-link disabled" href="#"><%= num_to_usd(CurrencyRate.last.rate) %>$</a>
         </div>
       </li>
       <li class="nav-item ml-auto">

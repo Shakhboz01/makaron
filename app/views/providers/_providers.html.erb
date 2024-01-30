@@ -5,8 +5,7 @@
         <th>ID</th>
       <% end %>
       <th>имя</th>
-      <th>итого разница в $</th>
-      <th>итого разница в суме</th>
+      <th>итого разница (Долг)</th>
       <% unless defined?(shrink) %>
         <th>номер телефона</th>
         <th>Коммент</th>
@@ -22,9 +21,6 @@
         <td><%= provider.id %></td>
         <% end %>
         <td><%= provider.name %></td>
-        <td>
-          <%= link_to number_to_currency(provider.calculate_debt_in_usd), delivery_from_counterparties_path(q_other: { total_paid_less_than_price: "1" }, q: {provider_id_eq: provider.id, price_in_usd_true: true}), style: "color: #{ (provider.calculate_debt_in_usd < 0) ? 'red' : 'blue' };  font-size: large" %>
-        </td>
         <td><%= link_to num_to_usd(provider.calculate_debt_in_uzs), delivery_from_counterparties_path(q_other: { total_paid_less_than_price: "1" }, q: {provider_id_eq: provider.id, price_in_usd_true: false}), style: "color: #{ (provider.calculate_debt_in_uzs < 0) ? 'red' : 'blue' };  font-size: large" %></td>
         <% unless defined?(shrink) %>
           <td><%= provider.phone_number %></td>

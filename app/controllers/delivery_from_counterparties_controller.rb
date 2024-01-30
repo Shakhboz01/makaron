@@ -19,7 +19,6 @@ class DeliveryFromCounterpartiesController < ApplicationController
     @expenditures_data = @delivery_from_counterparty.expenditures
     @q = @delivery_from_counterparty.product_entries.ransack(params[:q])
     @product_entries = @q.result
-    @storage = @delivery_from_counterparty.product_entries&.last&.storage_id
     @product_entry = ProductEntry.new(delivery_from_counterparty_id: @delivery_from_counterparty.id)
     @price_in_percentage = 0
     @products = Product.active.order(:name)

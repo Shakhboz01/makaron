@@ -7,8 +7,7 @@
         <% end %>
 
         <th>имя</th>
-        <th>итого разница в $</th>
-        <th>итого разница в суме</th>
+        <th>итого разница (Долг)</th>
 
         <% unless defined?(shrink) %>
           <th>номер телефона</th>
@@ -24,7 +23,6 @@
             <td><%= buyer.id %></td>
           <% end %>
           <td><%= buyer.name %></td>
-          <td><%= link_to number_to_currency(buyer.calculate_debt_in_usd), sales_url(q_other: {total_paid_less_than_price: '1'},q: {buyer_id_eq: buyer.id, price_in_usd_true: true}), method: :get, style: "color: #{ (buyer.calculate_debt_in_usd < 0) ? 'red' : 'blue' }; font-size: large" %></td>
           <td><%= link_to num_to_usd(buyer.calculate_debt_in_uzs), sales_url(q_other: {total_paid_less_than_price: '1'},q: {buyer_id_eq: buyer.id, price_in_usd_true: false}), method: :get, style: "color: #{ (buyer.calculate_debt_in_uzs < 0) ? 'red' : 'blue' }; font-size: large" %></td>
           <% unless defined?(shrink) %>
             <td><%= buyer.phone_number %></td>

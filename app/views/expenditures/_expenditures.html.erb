@@ -6,7 +6,6 @@
           <th>ID</th>
         <% end %>
         <th>Цена</th>
-        <th>Оплачено</th>
         <% unless defined?(shrink) %>
           <th>Тип оплаты</th>
         <% end %>
@@ -23,7 +22,6 @@
             <td class="<%= detect_danger_row(expenditure.price, expenditure.total_paid) %>"><%= expenditure.id %></td>
           <% end %>
           <td><%= currency_convert(expenditure.price_in_usd, expenditure.price) %></td>
-          <td><%= currency_convert(expenditure.price_in_usd, expenditure.total_paid) %></td>
           <% unless defined?(shrink) %>
             <td><%= expenditure.payment_type %></td>
           <% end %>
@@ -36,7 +34,6 @@
             <% end %>
 
             <%= cdlink_to 'Удалить', expenditure %>
-            <%= render 'expenditures/expenditures_transaction', expenditure: expenditure %>
           </td>
         </tr>
       <% end %>

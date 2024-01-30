@@ -4,7 +4,6 @@ class Product < ApplicationRecord
   include ProtectDestroyable
 
   validates_presence_of :name
-  belongs_to :product_category, optional: true
   has_many :product_entries
   has_many :product_remaining_inequalities
   enum unit: %i[ шт. кг метр пачка ]

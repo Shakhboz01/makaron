@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @random_code = Product.generate_code
-    @product = Product.new(product_category_id: params[:product_category_id])
+    @product = Product.new
   end
 
   # GET /products/1/edit

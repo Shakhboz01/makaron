@@ -6,24 +6,12 @@
     <table class='table-bordered'>
         <thead>
           <tr>
-            <th></th>
             <th>Итого цена</th>
-            <th>Итого оплачено</th>
-            <th>Разница</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th>В долларах </th>
-            <td><%= number_to_currency @expenditures_data.price_in_usd.sum(:price) %></td>
-            <td><%= number_to_currency @expenditures_data.price_in_usd.sum(:total_paid) %></td>
-            <td><%= number_to_currency(@expenditures_data.price_in_usd.sum(:price) - @expenditures_data.price_in_usd.sum(:total_paid)) %></td>
-          </tr>
-          <tr>
-            <th>В сумах </th>
             <td><%= num_to_usd(@expenditures_data.price_in_uzs.sum(:price)) %></td>
-            <td><%= num_to_usd @expenditures_data.price_in_uzs.sum(:total_paid) %></td>
-            <td><%= num_to_usd(@expenditures_data.price_in_uzs.sum(:price) - @expenditures_data.price_in_uzs.sum(:total_paid)) %></td>
           </tr>
         </tbody>
       </table>

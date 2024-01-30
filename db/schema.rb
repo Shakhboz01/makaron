@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_30_091409) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_30_103250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -181,12 +181,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_091409) do
     t.bigint "combination_of_local_product_id"
     t.boolean "local_entry", default: false
     t.boolean "return", default: false
-    t.bigint "storage_id", null: false
     t.decimal "price_in_percentage", precision: 5, scale: 2
     t.index ["combination_of_local_product_id"], name: "index_product_entries_on_combination_of_local_product_id"
     t.index ["delivery_from_counterparty_id"], name: "index_product_entries_on_delivery_from_counterparty_id"
     t.index ["product_id"], name: "index_product_entries_on_product_id"
-    t.index ["storage_id"], name: "index_product_entries_on_storage_id"
   end
 
   create_table "product_remaining_inequalities", force: :cascade do |t|
@@ -233,11 +231,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_091409) do
     t.integer "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_category_id", null: false
     t.boolean "price_in_usd", default: false
     t.string "code"
     t.boolean "for_sale", default: false
-    t.index ["product_category_id"], name: "index_products_on_product_category_id"
   end
 
   create_table "providers", force: :cascade do |t|
@@ -408,7 +404,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_091409) do
   add_foreign_key "product_entries", "combination_of_local_products"
   add_foreign_key "product_entries", "delivery_from_counterparties"
   add_foreign_key "product_entries", "products"
-  add_foreign_key "product_entries", "storages"
   add_foreign_key "product_remaining_inequalities", "products"
   add_foreign_key "product_remaining_inequalities", "users"
   add_foreign_key "product_sells", "combination_of_local_products"
@@ -416,7 +411,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_091409) do
   add_foreign_key "product_sells", "sale_from_local_services"
   add_foreign_key "product_sells", "sale_from_services"
   add_foreign_key "product_sells", "sales"
-  add_foreign_key "products", "product_categories"
   add_foreign_key "salaries", "teams"
   add_foreign_key "salaries", "users"
   add_foreign_key "sale_from_local_services", "buyers"

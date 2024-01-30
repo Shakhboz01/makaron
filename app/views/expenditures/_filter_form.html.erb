@@ -14,16 +14,6 @@
           <%= f.label :expenditure_type_eq, 'тип расхода', class: 'control-label' %>
           <%= f.select :expenditure_type_eq, Expenditure.expenditure_types.keys.map { |unit| [Expenditure.human_attribute_name("unit.#{unit}"), unit] }, {include_blank: true}, class: 'form-control' %>
         </div>
-        <div class="form-group col-xs-12 col-sm-2">
-          <%= simple_fields_for :q_other do |ff| %>
-            <%= ff.label :total_paid_less_than_price, 'Неоплаченные расходы', class: 'control-label' %>
-            <%= ff.check_box :total_paid_less_than_price, checked: !params.dig(:q_other, :total_paid_less_than_price).to_i.zero?, class: 'form-control' %>
-          <% end %>
-        </div>
-        <div class="form-group col-xs-12 col-sm-2">
-          <%= f.label :price_in_usd_true, 'Договор в $', class: 'control-label' %>
-          <%= f.select :price_in_usd_true, [['Да', true], ['Нет', false]], {include_blank: true}, class: 'form-control' %>
-        </div>
       </div>
       <div class="row card-body">
         <div class="form-group col-xs-12 col-sm-6">

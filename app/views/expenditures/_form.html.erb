@@ -7,11 +7,7 @@
     <%= f.association :delivery_from_counterparty, as: :hidden %>
     <%= f.input :payment_type, label: 'Тип оплаты', collection: Expenditure.payment_types.keys.map { |unit| [Expenditure.human_attribute_name("unit.#{unit}"), unit] }, include_blank: false %>
     <%= f.input :price, as: :numeric, label: 'Сумма:' %>
-    <%= f.input :price_in_usd, label: 'Сумма в $' %>
-    <%= f.input :total_paid, label: 'Оплачено', placeholder: 'Пропустите этот поле если вы оплатили полностью' %>
     <%= f.input :expenditure_type, label: 'Тип расхода', collection: Expenditure.expenditure_types.keys.map { |unit| [Expenditure.human_attribute_name("unit.#{unit}"), unit] }, include_blank: false %>
-    <%= f.input :sale_ids, label: 'привязка от продаж', placeholder: 'Пример: 1,3,4...', include_blank: false %>
-    <%= f.input :image, as: :file, label: 'Выбрать картинку', input_html: { accept: 'image/*' } %>
     <%= f.input :comment, label: 'Комментарие', input_html: { placeholder: 'Не обязательно' } %>
   </div>
 
