@@ -25,10 +25,6 @@
             <%= ff.check_box :total_paid_less_than_price, checked: !params.dig(:q_other, :total_paid_less_than_price).to_i.zero?, class: 'form-control' %>
           <% end %>
         </div>
-        <div class="form-group col-xs-12 col-sm-2">
-          <%= f.label :price_in_usd_true, 'Договор в $', class: 'control-label' %>
-          <%= f.select :price_in_usd_true, [['Да', true], ['Нет', false]], {include_blank: true}, class: 'form-control' %>
-        </div>
       </div>
       <div class="row card-body">
         <div class="form-group col-xs-12 col-sm-6">

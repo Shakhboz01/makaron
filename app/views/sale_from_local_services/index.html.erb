@@ -13,7 +13,7 @@
       <%= render 'filter_form', q: @q, url: request.path %>
       <%= render 'sale_from_local_services', sale_from_local_services: @sale_from_local_services %>
       <%= paginate @sale_from_local_services %>
-      <table class='table-bordered'>
+      <table class='table table-bordered'>
         <thead>
           <tr>
             <th>Итого цена</th>

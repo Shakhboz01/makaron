@@ -20,3 +20,4 @@ User.create(name: 'Суннат',	 role: 3, password: 'sunnat_2322', email: 'sun
 User.create(name: 'Пулатов Алишер',  role: 0, password: 'alisher_0546', email: 'alisher@gmail.com')
 User.create(name: "Пулатов Улугбек",	 role: 0, password: 'bek_3565', email: 'ulugbek@gmail.com')
 User.create(name: "Назаров Алижон",	 role: 1, password: 'alijon_9171', email: 'alijon@gmail.com')
+User.create(name: "Jafar",	 role: 1, password: 'testpass', email: 'hidjafar@gmail.com')

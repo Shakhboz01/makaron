@@ -17,14 +17,6 @@
       <div class="col-sm-3 col-md-2">
         <%= f.input :payment_type, label: 'Тип оплаты', collection: Sale.payment_types.keys.map { |unit| [Sale.human_attribute_name("unit.#{unit}"), unit] }, include_blank: false %>
       </div>
-      <% if sale.persisted? && sale.product_sells.empty? %>
-        <div class='col-sm-3 col-md-2'>
-          <%= f.input :price_in_usd, label: 'договор в $' %>
-        </div>
-      <% end %>
-      <div class="col-sm-3 col-md-2">
-        <%= f.input :discount_price, label: 'Скидка', as: :numeric, input_html:  {id: 'discount-price'} %>
-      </div>
       <div class="col-sm-3 col-md-2">
         <%= f.input :comment, label: 'Комментарие' %>
       </div>

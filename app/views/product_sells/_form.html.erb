@@ -32,17 +32,10 @@
   $(document).ready(function() {
     document.querySelector('#product_sell_product_id').addEventListener('change', function(e) {
       document.querySelector('#product_sell_amount').value = 1;
-      document.querySelector('#product_sell_product_code_id').value = document.querySelector('#product_sell_product_id').value;
       handleProductChange();
       calculateSalePrice();
     })
 
-    document.querySelector('#product_sell_product_code_id').addEventListener('change', function(e) {
-      document.querySelector('#product_sell_amount').value = 1;
-      document.querySelector('#product_sell_product_id').value = document.querySelector('#product_sell_product_code_id').value;
-      handleProductChange();
-      calculateSalePrice();
-    })
 
     document.querySelector('#product_sell_amount').addEventListener('change', function(e) {
       e.preventDefault();

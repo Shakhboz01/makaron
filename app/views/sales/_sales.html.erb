@@ -7,9 +7,6 @@
       <% end %>
       <th>Покупатель</th>
       <th>Итого цена</th>
-      <% unless defined?(shrink) %>
-        <th>Итого доход</th>
-      <% end %>
       <th>Оплачено</th>
       <% unless defined?(shrink) %>
         <th>Тип оплаты</th>
@@ -17,7 +14,6 @@
       <% end %>
       <% unless defined?(shrink) %>
         <th>Дата продажи</th>
-        <th>Исполнитель</th>
         <th colspan="3"></th>
       <% end %>
     </tr>
@@ -35,24 +31,17 @@
             <% end %>
           </td>
         <% end %>
-        <td><%= sale.buyer.name %> <%= show_warning(sale) %> </td>
+        <td><%= sale.buyer.name %></td>
         <td><%= currency_convert(sale.price_in_usd, sale.total_price) %></td>
-        <% unless defined?(shrink) %>
-          <td><%= currency_convert(sale.price_in_usd, sale.total_profit) %></td>
-        <% end %>
         <td><%= currency_convert(sale.price_in_usd, sale.total_paid) %></td>
         <% unless defined?(shrink) %>
           <td><%= sale.payment_type %></td>
           <td><%= sale.comment %></td>
           <td><%= strf_datetime sale.created_at %></td>
-          <td><%= sale.user.name %></td>
         <% end %>
         <td>
           <%= clink_to 'Посмотреть', sale_path(sale), 'fa-search' %>
           <%= clink_to 'PDF чек', generate_pdf_sale_path(sale), 'fa-file-pdf', :post %>
-          <% if sale.closed? %>
-            <%= render 'sales/sale_transaction', sale: sale %>
-          <% end %>
         </td>
       </tr>
     <% end %>
