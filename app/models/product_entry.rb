@@ -9,23 +9,27 @@ class ProductEntry < ApplicationRecord
   has_one :provider, through: :delivery_from_counterparty
   has_one :user, through: :delivery_from_counterparty
   belongs_to :product
-  belongs_to :storage
+  belongs_to :storage, optional: true
   validates :amount, comparison: { greater_than: 0 }
-  validates :sell_price, :buy_price, comparison: { greater_than_or_equal_to: 0 }
-  validates :sell_price, comparison: { greater_than_or_equal_to: :buy_price }, if: -> { combination_of_local_product_id.nil? }
+  validates :buy_price, comparison: { greater_than_or_equal_to: 0 }
   validates_presence_of :buy_price, unless: -> { local_entry }
 
   before_validation :varify_delivery_from_counterparty_is_not_closed
+  before_save :set_sell_price
   before_create :set_currency
   before_update :amount_sold_is_not_greater_than_amount
   before_destroy :varify_delivery_from_counterparty_is_not_closed
   after_create :update_delivery_currency
-  after_create :update_delivery_category
   after_update :notify_on_remaining_inequality, if: :saved_change_to_amount_sold?
 
   scope :paid_in_uzs, -> { where('paid_in_usd = ?', false) }
   scope :paid_in_usd, -> { where('paid_in_usd = ?', true) }
+
   private
+
+  def set_sell_price
+    self.sell_price = buy_price
+  end
 
   def notify_on_remaining_inequality
     return if amount > amount_sold

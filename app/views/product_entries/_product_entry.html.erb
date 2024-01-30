@@ -3,25 +3,16 @@
     <tr>
       <th>ID</th>
       <th>Цена прихода</th>
-      <th>Цена продажи</th>
-      <th>
-        Цена услуги
-        <i title='Цена продажи при оказании услуги или в обьектах' class="fa-solid fa-circle-info"></i>
-      </th>
       <th>Товар</th>
       <th>Количество</th>
-      <th>Продано</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><%= product_entry.id %></td>
       <td><%= product_entry.buy_price %></td>
-      <td><%= product_entry.sell_price %></td>
-      <td><%= product_entry.service_price %></td>
       <td><%= product_entry.product.name %></td>
       <td><%= product_entry.amount %></td>
-      <td><%= product_entry.amount_sold %></td>
     </tr>
   </tbody>
 </table>

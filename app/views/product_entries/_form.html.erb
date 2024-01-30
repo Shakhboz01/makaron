@@ -10,30 +10,14 @@
     <%= f.input :local_entry, as: :hidden %>
 
     <div class="row">
-      <div class='col-sm-2 excel' style='display:none'>
-        <%= f.input :excel_data, label: 'Excel import', as: :file, input_html: { accept: '.xlsx, .xls' } %>
-      </div>
       <div class='col-sm-2 piece-entry'>
         <%= f.association :product, label: 'Товар', collection: products.order(:name), include_blank: false %>
-      </div>
-      <div class='col-sm-1'>
-        <%= f.association :storage, label: 'Склад', collection: Storage.pluck(:name, :id), selected: defined?(storage) ? storage : nil, include_blank: false %>
       </div>
       <div class='col-sm-1 piece-entry'>
         <%= f.input :amount, label: 'количество', id: 'inputs' %>
       </div>
       <div class='col-sm-2 piece-entry'>
         <%= f.input :buy_price, label: 'Цена прихода', input_html: {id: 'product_entry_buy_price'} %>
-      </div>
-      <div class='col-sm-2 piece-entry'>
-        <%= f.input :sell_price, label: 'Цена продажи', input_html: {id: 'product_entry_sell_price'} %>
-      </div>
-      <div class='col-sm-1 excel' style='display: none'>
-        <%= f.input :product_category_id, label: 'Категория', collection: ProductCategory.pluck(:name, :id), include_blank: false %>
-      </div>
-      <div class='col-sm-2 d-flex align-items-center'>
-        <%= f.input :price_in_percentage, label: 'продажа в %', input_html: {id: 'product_entry_price_in_percentage', value: defined?(price_in_percentage) ? price_in_percentage : 0} %>
-        <i title='Excel import' class="fa-solid fa-arrows-rotate" id='refresh' style='cursor: pointer; margin-left: 10px; color: blue'></i>
       </div>
       <div class='col-sm-2 align-self-center'>
         <div class="form-actions">

@@ -4,21 +4,10 @@
       <th><%= sort_link q, :id, 'ID' %></th>
       <th>Поставщик</th>
       <th><%= sort_link q, :buy_price, 'Цена прихода' %></th>
-      <th><%= sort_link q, :sell_price, 'Цена продажи' %></th>
-      <th><%= sort_link q, :sell_price, 'Цена в %' %></th>
       <th>Товар</th>
       <th><%= sort_link q, :amount, 'Количество' %></th>
       <% unless defined?(shrink) %>
-      <th><%= sort_link q, :amount_sold, 'Продано' %></th>
-      <% end %>
-      <th>склад</th>
-      <% unless defined?(shrink) %>
-        <%# <th>
-          <%= sort_link q, :return, 'Возврат' %>
-          <%# <i title='При оформлении возврата, оно учитывается как приход' class="fa-solid fa-circle-info"></i> %>
-        <%# </th> %>
         <th><%= sort_link q, :created_at, 'Оформлено в' %></th>
-        <td>Исполнитель</td>
       <% end %>
       <th colspan="3"></th>
     </tr>
@@ -29,27 +18,11 @@
         <td class="<%= active_tr(product_entry.amount > product_entry.amount_sold) %>"><%= product_entry.id %></td>
         <td><%= product_entry.provider.name %></td>
         <td><%= currency_convert(product_entry.paid_in_usd, product_entry.buy_price) %> (<%= currency_convert(product_entry.paid_in_usd, product_entry.buy_price * product_entry.amount) %>)</td>
-        <td><%= currency_convert(product_entry.paid_in_usd, product_entry.sell_price) %> (<%= currency_convert(product_entry.paid_in_usd, product_entry.sell_price * product_entry.amount) %>)</td>
-        <td><%= product_entry.price_in_percentage %>%</td>
         <td><%= product_entry.product.name %></td>
         <td><%= product_entry.amount %></td>
         <% unless defined?(shrink) %>
-        <td><%= product_entry.amount_sold %></td>
-        <% end %>
-        <td><%= product_entry.storage.name %></td>
-        <% unless defined?(shrink) %>
-          <%# <td><%= active_check(product_entry.return) %>
           <td><%= strf_datetime(product_entry.created_at) %></td>
-          <td><%= product_entry.user.name %></td>
         <% end %>
-        <td>
-          <% if product_entry.combination_of_local_product %>
-              <%= clink_to 'посмотреть', combination_of_local_product_path(product_entry.combination_of_local_product), 'fa-search' %>
-          <% end %>
-          <% unless defined?(shrink) %>
-            <%= clink_to 'Редактировать цену продажи', edit_product_entry_path(product_entry), 'fa-edit' %>
-          <% end %>
-        </td>
         <% if defined?(deletable) %>
           <td><%= cdlink_to 'Удалить', product_entry %></td>
         <% end %>

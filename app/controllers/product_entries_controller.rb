@@ -22,7 +22,7 @@ class ProductEntriesController < ApplicationController
       return: params[:return],
       delivery_from_counterparty_id: params[:delivery_from_counterparty_id],
     )
-    @products = Product.active
+    @products = Product.active.where(for_sale: false)
   end
 
   def define_product_destination; end
