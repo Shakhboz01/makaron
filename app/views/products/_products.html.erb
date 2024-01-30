@@ -1,22 +1,15 @@
 <div class="card shadow-lg">
   <div class="card-header d-flex justify-content-between align-items-center">
-    <h3 class="card-title font-weight-bold">Товары/Материалы</h3>
-    <%= link_to 'Добавить новый', new_product_path(product_category_id: defined?(product_category_id) ? product_category_id : nil), class: "btn btn-success min-width-btn" %>
+    <h3 class="card-title font-weight-bold">Товары/Сырья</h3>
+    <%= link_to 'Добавить новый', new_product_path, class: "btn btn-success min-width-btn" %>
   </div>
 
   <div class="card-body">
     <table class="table table-hover table-bordered table-striped">
       <thead>
         <tr>
-          <th><%= sort_link q, :code, 'код' %></th>
           <th><%= sort_link q, :name, 'Название' %></th>
-          <th>
-            <%= sort_link q, :price_in_usd, 'Импортный $' %>
-            <i title='товары которые производятся внутри организации' class="fa-solid fa-circle-info"></i>
-          </th>
-          <th><%= sort_link q, :buy_price, 'Цена прихода' %></th>
-          <th><%= sort_link q, :sell_price, 'Цена продажи' %></th>
-          <th><%= sort_link q, :unit, 'Единица измерения' %></th>
+          <th><%= sort_link q, :sell_price, 'Цена' %></th>
           <th>Остаток</th>
           <th><%= sort_link q, :created_at, 'Оформлено в' %></th>
           <th colspan="3"></th>
@@ -25,16 +18,11 @@
       <tbody>
         <% products.each do |product| %>
           <tr class="<%= active_tr(product.active) %>">
-            <td><%= product.code %></td>
             <td><%= product.name %></td>
-            <td><%= active_check(product.price_in_usd) %></td>
-            <td><%= currency_convert(product.price_in_usd, product.buy_price) %></td>
             <td><%= currency_convert(product.price_in_usd, product.sell_price) %></td>
-            <td><%= product.unit %></td>
             <td><%= product.calculate_product_remaining %></td>
             <td><%= strf_datetime(product.created_at) %></td>
             <td>
-              <%= clink_to 'История приход товара', product_entries_path(q: {product_id_eq: product.id}), 'fa-search' %>
               <%= clink_to 'Редактировать', edit_product_path(product), 'fa-edit' %>
               <%= clink_to 'Изменить остаток товара', new_product_remaining_inequality_path(product_id: product.id), 'fa-not-equal' %>
               <% if product.product_remaining_inequalities.exists? %>

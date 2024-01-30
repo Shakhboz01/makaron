@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host:     <%= ENV.fetch('DB_HOST', 'localhost') %>
-  database: global_gm_development
+  database: makaron_development
   username: postgres
   password: 998915309764
   pool:     <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
@@ -13,7 +13,7 @@ development:
 
 test:
   <<: *default
-  database: global_gm_test
+  database: makaron_test
 
 production:
   # <<: *default

@@ -6,12 +6,13 @@ class Product < ApplicationRecord
   validates_uniqueness_of :code
   validates_presence_of :name
   validates_presence_of :unit
-  belongs_to :product_category
+  belongs_to :product_category, optional: true
   has_many :product_entries
   has_many :product_remaining_inequalities
   enum unit: %i[ шт. кг метр пачка ]
   scope :active, -> { where(:active => true) }
   scope :local, -> { where(:local => true) }
+  before_save :set_buy_price
   after_save :process_initial_remaining_change, if: :saved_change_to_initial_remaining?
 
   def self.generate_code
@@ -28,6 +29,11 @@ class Product < ApplicationRecord
   end
 
   private
+
+  def set_buy_price
+    self.buy_price = sell_price
+    self.unit = 0
+  end
 
   def process_initial_remaining_change
     return if initial_remaining.positive? && !self.product_entries.count.zero?

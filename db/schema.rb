@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_20_130628) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_30_091409) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -236,6 +236,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_130628) do
     t.bigint "product_category_id", null: false
     t.boolean "price_in_usd", default: false
     t.string "code"
+    t.boolean "for_sale", default: false
     t.index ["product_category_id"], name: "index_products_on_product_category_id"
   end
 
@@ -251,7 +252,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_130628) do
 
   create_table "salaries", force: :cascade do |t|
     t.boolean "prepayment"
-    t.date "month", default: "2023-12-26"
+    t.date "month", default: "2024-01-30"
     t.bigint "team_id"
     t.bigint "user_id"
     t.decimal "price", precision: 10, scale: 2

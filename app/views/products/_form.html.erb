@@ -4,17 +4,12 @@
 
   <div class="form-inputs">
     <%= f.input :name, label: 'Название' %>
-    <%= f.input :code, input_html: {value: product.persisted? ? product.code : random_code}, label: 'код' %>
-    <%= f.input :price_in_usd, label: 'Цена в $' %>
-    <%= f.input :buy_price, label: 'Цена прихода' %>
+    <%= f.input :for_sale, label: 'cырьё' %>
     <%= f.input :sell_price, label: 'Цена продажи' %>
-    <%= f.association :product_category, label: 'Категория товара', include_blank: false %>
 
     <% unless product.persisted? %>
       <%= f.input :initial_remaining, label: 'остаток' %>
     <% end %>
-
-    <%= f.input :unit, label: 'Единица измерение', collection: Product.units.keys.map { |unit| [Product.human_attribute_name("unit.#{unit}"), unit] }, include_blank: false %>
   </div>
 
   <div class="form-actions">

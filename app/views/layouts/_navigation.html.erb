@@ -31,11 +31,11 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= button_to 'Продажу (alt + 2)', default_create_sales_path, method: :post, class: 'dropdown-item' %>
-          <%= button_to 'Приход товара (alt + 5)', default_create_delivery_from_counterparties_path, method: :post, class: 'dropdown-item' %>
+          <%= button_to 'Приход муки (alt + 5)', default_create_delivery_from_counterparties_path, method: :post, class: 'dropdown-item' %>
           <%= link_to 'Расход (alt + 0)', new_expenditure_path, class: 'dropdown-item' %>
           <%= link_to 'Поставщика', new_provider_path, class: 'dropdown-item' %>
           <%= link_to 'Покупателя', new_buyer_path, class: 'dropdown-item' %>
-          <%= link_to 'Товарa (alt + 1)', new_product_path, class: 'dropdown-item' %>
+          <%= link_to 'Товарa/Сырья (alt + 1)', new_product_path, class: 'dropdown-item' %>
           <%= link_to 'Зарплату/Аванс', new_salary_path, class: 'dropdown-item' %>
           <%= link_to 'Перекличку работников', new_participation_path, class: 'dropdown-item' %>
           <% if user_signed_in? && current_user.кассир? %>
@@ -48,15 +48,7 @@
           Прочие
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to 'Конвертация', currency_conversions_path, class: 'dropdown-item' %>
-          <%= link_to 'Шорткаты', shortcut_path, class: 'dropdown-item' %>
-          <%= link_to 'Cкидки при продаже', discounts_path, class: 'dropdown-item' %>
-          <%= link_to 'История пополнений', transaction_histories_path, class: 'dropdown-item' %>
           <%= link_to 'История изменений остатки товара', product_remaining_inequalities_path, class: 'dropdown-item' %>
-          <%= link_to 'Настройки курса', currency_rates_path, class: 'dropdown-item' %>
-          <%= link_to 'Приходы/Расходы от руководителей', owners_operations_path, class: 'dropdown-item' %>
-          <%= link_to 'ежедневный отчет по кассе', daily_transaction_reports_path, class: 'dropdown-item' %>
-          <%= link_to 'Приём/отдача средств', debt_operations_path, class: 'dropdown-item' %>
         </div>
       </li>
       <% if %w[руководитель бухгалтер].include?(current_user.role) %>
