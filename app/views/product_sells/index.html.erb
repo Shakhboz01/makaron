@@ -17,7 +17,6 @@
       <table class='table-bordered'>
         <thead>
           <tr>
-            <th></th>
             <th>Итого цена</th>
             <th>Итого доход</th>
             <th>Разница</th>
@@ -25,13 +24,6 @@
         </thead>
         <tbody>
           <tr>
-            <th>В долларах </th>
-            <td><%= number_to_currency @product_sells_data.where(price_in_usd: true).sum(:sell_price) %></td>
-            <td><%= number_to_currency @product_sells_data.where(price_in_usd: true).sum(:total_profit) %></td>
-            <td><%= number_to_currency(@product_sells_data.where(price_in_usd: true).sum(:sell_price) - @product_sells_data.where(price_in_usd: true).sum(:total_profit)) %></td>
-          </tr>
-          <tr>
-            <th>В сумах </th>
             <td><%= num_to_usd(@product_sells_data.where(price_in_usd: false).sum(:sell_price)) %></td>
             <td><%= num_to_usd @product_sells_data.where(price_in_usd: false).sum(:total_profit) %></td>
             <td><%= num_to_usd(@product_sells_data.where(price_in_usd: false).sum(:sell_price) - @product_sells_data.where(price_in_usd: false).sum(:total_profit)) %></td>

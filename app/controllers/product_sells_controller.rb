@@ -17,11 +17,7 @@ class ProductSellsController < ApplicationController
 
   # GET /product_sells/new
   def new
-    @product_sell = ProductSell.new(
-      combination_of_local_product_id: params[:combination_of_local_product_id],
-      sale_from_local_service_id: params[:sale_from_local_service_id],
-      sale_from_service_id: params[:sale_from_service_id],
-    )
+    @product_sell = ProductSell.new
   end
 
   # GET /product_sells/1/edit

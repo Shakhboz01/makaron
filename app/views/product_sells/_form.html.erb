@@ -6,10 +6,6 @@
     <%= f.association :sale, as: :hidden %>
 
     <div class='row'>
-      <div class='col-sm-4 col-md-2'>
-        <%= f.label :product_code_id, 'Поиск товара по коду товара:' %>
-        <%= f.collection_select :product_code_id, products.order('LOWER(name) ASC'), :id, :product_code, { include_blank: true }, { class: 'form-select form-control' } %>
-      </div>
       <div class='col-sm-4 col-md-4'>
         <%= f.label :product_id, 'Или поиск по название товара:' %>
         <%= f.collection_select :product_id, products.order('LOWER(name) ASC'), :id, :name, { include_blank: true }, { class: 'form-select form-control' } %>

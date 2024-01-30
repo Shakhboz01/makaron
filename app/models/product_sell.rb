@@ -18,19 +18,23 @@ class ProductSell < ApplicationRecord
   validate :verify_combination_is_not_closed
   scope :price_in_uzs, -> { where('price_in_usd = ?', false) }
   scope :price_in_usd, -> { where('price_in_usd = ?', true) }
+  before_save :set_buy_price
   before_create :increase_amount_sold
   before_create :set_prices_and_profit
-  after_create :update_sale_currency
   after_create :increase_total_price
   before_destroy :deccrease_amount_sold
   before_destroy :decrease_total_price
 
   private
 
+  def set_buy_price
+    self.buy_price = sell_price
+  end
+
   def increase_total_price
-    if !sale.nil?
-      sale.increment!(:total_price, (sell_price * amount))
-    end
+    return if sale.nil?
+
+    sale.increment!(:total_price, (sell_price * amount))
   end
 
   def decrease_total_price

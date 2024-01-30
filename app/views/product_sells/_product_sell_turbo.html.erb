@@ -5,9 +5,6 @@
   <td><%= product_sell.amount %></td>
   <td><%= currency_convert(product_sell.price_in_usd, product_sell.sell_price) %></td>
   <td><%= currency_convert(product_sell.price_in_usd, product_sell.sell_price * product_sell.amount) %></td>
-  <td><%= currency_convert(product_sell.price_in_usd, product_sell.total_profit) %></td>
   <td><%= strf_datetime(product_sell.created_at) %></td>
-  <td><%= product_sell.user.name %></td>
-  <td><%= clink_to 'Посмотреть с какой партии прихода был продан этот товар', product_sell, 'fa-search' %></td>
   <td><%= cdlink_to 'Удалить', product_sell %></td>
 </tr>
