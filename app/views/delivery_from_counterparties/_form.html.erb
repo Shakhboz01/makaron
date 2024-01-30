@@ -17,14 +17,6 @@
       <div class='col-sm-3 col-md-2'>
         <%= f.input :payment_type, label: 'Тип оплаты', collection: DeliveryFromCounterparty.payment_types.keys.map { |unit| [DeliveryFromCounterparty.human_attribute_name("unit.#{unit}"), unit] }, include_blank: false %>
       </div>
-      <% if delivery_from_counterparty.persisted? && delivery_from_counterparty.product_entries.empty? %>
-        <div class='col-sm-3 col-md-2'>
-          <%= f.input :price_in_usd, label: 'договор в $' %>
-        </div>
-        <div class='col-sm-3 col-md-2'>
-          <%= f.association :product_category, label: 'Категория', collection: ProductCategory.all, include_blank: false %>
-        </div>
-      <% end %>
       <div class='col-sm-3 col-md-2'>
         <%= f.input :comment, label: 'Комментарии' %>
       </div>

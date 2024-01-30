@@ -10,7 +10,6 @@
 
 <div class='d-flex justify-content-around'>
   <b>ИТОГО ЦЕНА ПРИХОДА: <%= num_to_usd @delivery_from_counterparty.calculate_total_price %></b>
-  <b>ИТОГО ЦЕНА ПОСЛЕ ПРОДАЖИ: <%= num_to_usd @delivery_from_counterparty.calculate_sell_price %></b>
   <b>ИТОГО КОЛИЧЕСТВО: <%= @delivery_from_counterparty.product_entries.sum(:amount) %></b>
 </div>
 
