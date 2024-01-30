@@ -49,9 +49,7 @@
             <tr>
               <th>Итого</th>
               <th>Количество</th>
-              <th>В долларах</th>
-              <th>Оплачено</th>
-              <th>В сумах</th>
+              <th>Итого цена</th>
               <th>Оплачено</th>
             </tr>
           </thead>
@@ -59,24 +57,18 @@
             <tr>
               <th>Продажа</th>
               <td><%= @sales_in_usd.count + @sales_in_uzs.count %></td>
-              <td><%= number_to_currency @sales_in_usd.sum(:total_price) %></td>
-              <td><%= number_to_currency @sales_in_usd.sum(:total_paid) %></td>
               <td><%= num_to_usd @sales_in_uzs.sum(:total_price) %></td>
               <td><%= num_to_usd @sales_in_uzs.sum(:total_paid) %></td>
             </tr>
             <tr>
               <th>Приход товара</th>
               <td><%= @delivery_from_counterparties_in_usd.count + @delivery_from_counterparties_in_uzs.count %></td>
-              <td><%= number_to_currency @delivery_from_counterparties_in_usd.sum(:total_price) %></td>
-              <td><%= number_to_currency @delivery_from_counterparties_in_usd.sum(:total_paid) %></td>
               <td><%= num_to_usd @delivery_from_counterparties_in_uzs.sum(:total_price) %></td>
               <td><%= num_to_usd @delivery_from_counterparties_in_uzs.sum(:total_paid) %></td>
             </tr>
             <tr>
               <th>Расходы</th>
               <td><%= @expenditures_in_usd.count + @expenditures_in_uzs.count %></td>
-              <td><%= number_to_currency @expenditures_in_usd.sum(:price) %></td>
-              <td><%= number_to_currency @expenditures_in_usd.sum(:total_paid) %></td>
               <td><%= num_to_usd @expenditures_in_uzs.sum(:price) %></td>
               <td><%= num_to_usd @expenditures_in_uzs.sum(:total_paid) %></td>
             </tr>

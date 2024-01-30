@@ -4,24 +4,15 @@
     <thead>
       <tr>
         <th></th>
-        <th>В сум</th>
-        <th>В $</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Приход от продаж</td>
         <td><%= num_to_usd @sales_in_uzs %></td>
-        <td><%= number_to_currency @sales_in_usd %></td>
       </tr>
       <tr>
-        <td>Прибыль от продаж</td>
-        <td><%= num_to_usd @profit_from_sale_in_uzs %></td>
-        <td><%= number_to_currency @profit_from_sale_in_usd %></td>
-      </tr>
-      <tr>
-        <td>Расходы на покупки товаров</td>
-        <td><%= number_to_currency @delivery_from_counterparties_in_usd %></td>
+        <td>Расходы на покупки муки</td>
         <td><%= num_to_usd @delivery_from_counterparties_in_uzs %></td>
       </tr>
       <tr>
@@ -37,7 +28,10 @@
       <tr>
         <td>Прочие расходы</td>
         <td><%= num_to_usd @expenditures_in_uzs %></td>
-        <td><%= number_to_currency @expenditures_in_usd %></td>
+      </tr>
+      <tr>
+        <td style='color: green'>Итого прибыль</td>
+        <td><%= num_to_usd @total_income %></td>
       </tr>
     </tbody>
   </table>

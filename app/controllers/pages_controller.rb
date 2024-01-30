@@ -60,65 +60,21 @@ class PagesController < ApplicationController
 
     @q = DeliveryFromCounterparty.ransack(params[:q])
     @delivery_from_counterparties = @q.result
-    @product_categories = ProductCategory.where(weight: 0)
-    @local_category_info = []
-    @product_categories.each do |product_category|
-      money_given_in_usd =
-        @delivery_from_counterparties.where(product_category_id: product_category.id)
-                                     .price_in_usd.sum(:total_paid)
-      money_given_in_uzs =
-        @delivery_from_counterparties.where(product_category_id: product_category.id)
-                                     .price_in_uzs.sum(:total_paid)
-      product_taken_in_usd =
-        @delivery_from_counterparties.where(product_category_id: product_category.id)
-                                     .price_in_usd.sum(:total_price)
-      product_taken_in_uzs =
-        @delivery_from_counterparties.where(product_category_id: product_category.id)
-                                     .price_in_usd.sum(:total_price)
-      overall = {
-        category: product_category.name,
-        money_given_in_usd: money_given_in_usd,
-        money_given_in_uzs: money_given_in_uzs,
-        product_taken_in_usd: product_taken_in_usd,
-        product_taken_in_uzs: product_taken_in_uzs,
-        difference_in_usd: money_given_in_usd - product_taken_in_usd,
-        difference_in_uzs: money_given_in_uzs - product_taken_in_uzs
-      }
-      @local_category_info.push(overall)
-    end
-
-    @import_category_info = []
-    import_product_category = ProductCategory.find_by(weight: 1)
-    product_taken_in_usd =
-      @delivery_from_counterparties.where(product_category_id: import_product_category.id)
-                                   .price_in_usd.sum(:total_price)
-    money_given_in_usd =
-      @delivery_from_counterparties.where(product_category_id: import_product_category.id)
-                                   .price_in_usd.sum(:total_paid)
-    @import_category_info.push({
-      category: import_product_category.name,
-      money_given_in_usd: money_given_in_usd,
-      product_taken_in_usd: product_taken_in_usd,
-      difference_in_usd: money_given_in_usd - product_taken_in_usd
-    })
 
     # overall_info
     transaction_histories = TransactionHistory.ransack(params[:q]).result
     profit_from_sale = transaction_histories.where.not(sale_id: nil)
 
-    @sales_in_usd = profit_from_sale.price_in_usd.sum(:price)
     @sales_in_uzs = profit_from_sale.price_in_uzs.sum(:price)
 
-    @profit_from_sale_in_usd = profit_from_sale.price_in_usd.sum(:estimated_profit)
     @profit_from_sale_in_uzs = profit_from_sale.price_in_uzs.sum(:estimated_profit)
 
     delivery_from_counterparties = transaction_histories.where.not(delivery_from_counterparty_id: nil)
-    @delivery_from_counterparties_in_usd = delivery_from_counterparties.price_in_usd.sum(:price)
     @delivery_from_counterparties_in_uzs = delivery_from_counterparties.price_in_uzs.sum(:price)
 
     expenditures = transaction_histories.where.not(expenditure_id: nil)
-    @expenditures_in_usd = expenditures.price_in_usd.sum(:price)
     @expenditures_in_uzs = expenditures.price_in_uzs.sum(:price)
+    @total_income = (@sales_in_uzs.to_f - (@delivery_from_counterparties_in_uzs.to_f + @salaries.to_f + @prepayment.to_f + @expenditures_in_uzs.to_f))
 
     salaries = Salary.ransack(params[:q]).result
     @prepayment = salaries.where(prepayment: true).sum(:price)
