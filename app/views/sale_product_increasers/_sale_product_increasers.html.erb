@@ -1,0 +1,25 @@
+<div class="card-body">
+  <table class="table table-hover table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Товар</th>
+        <th>количество</th>
+        <th>Комментарие</th>
+        <th>Дата создания</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% sale_product_increasers.each do |sale_product_increaser| %>
+        <tr>
+          <td><%= sale_product_increaser.id %></td>
+          <td><%= sale_product_increaser.product.name %></td>
+          <td><%= sale_product_increaser.comment %></td>
+          <td><%= strf_datetime(sale_product_increaser.created_at) %></td>
+          <td><%= cdlink_to 'Удалить', sale_product_increaser %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

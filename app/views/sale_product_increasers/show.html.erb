@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @sale_product_increaser %>
+
+<div>
+  <%= link_to "Edit this sale product increaser", edit_sale_product_increaser_path(@sale_product_increaser) %> |
+  <%= link_to "Back to sale product increasers", sale_product_increasers_path %>
+
+  <%= button_to "Destroy this sale product increaser", @sale_product_increaser, method: :delete %>
+</div>

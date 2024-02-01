@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   validates_presence_of :name
   has_many :product_entries
   has_many :product_remaining_inequalities
+  has_many :sale_from_local_services
   enum unit: %i[ шт. кг метр пачка ]
   scope :active, -> { where(:active => true) }
   scope :local, -> { where(:local => true) }

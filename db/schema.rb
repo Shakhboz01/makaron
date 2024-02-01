@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_30_103250) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_30_161952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -287,6 +287,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_103250) do
     t.index ["user_id"], name: "index_sale_from_services_on_user_id"
   end
 
+  create_table "sale_product_increasers", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.decimal "amount", default: "1.0"
+    t.bigint "user_id", null: false
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_sale_product_increasers_on_product_id"
+    t.index ["user_id"], name: "index_sale_product_increasers_on_user_id"
+  end
+
   create_table "sales", force: :cascade do |t|
     t.decimal "total_paid", precision: 17, scale: 2, default: "0.0"
     t.integer "payment_type", default: 0
@@ -417,6 +428,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_103250) do
   add_foreign_key "sale_from_local_services", "users"
   add_foreign_key "sale_from_services", "buyers"
   add_foreign_key "sale_from_services", "users"
+  add_foreign_key "sale_product_increasers", "products"
+  add_foreign_key "sale_product_increasers", "users"
   add_foreign_key "sales", "buyers"
   add_foreign_key "sales", "users"
   add_foreign_key "services", "users"

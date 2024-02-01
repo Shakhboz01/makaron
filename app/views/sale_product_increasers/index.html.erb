@@ -1,0 +1,19 @@
+<div class="container my-5">
+  <%= render 'filter_form', q: @q, url: request.path %>
+  <div class="card shadow-lg">
+    <%= render 'sale_product_increasers', sale_product_increasers: @sale_product_increasers, sale_product_increasers_data: @sale_product_increasers_data %>
+    <%= paginate @sale_product_increasers %>
+    <table class='table-bordered'>
+        <thead>
+          <tr>
+            <th>Итого количество</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= num_to_usd(@sale_product_increasers_data.sum(:amount)) %></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>

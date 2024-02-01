@@ -15,8 +15,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'Продажи', sales_path, class: 'dropdown-item' %>
-          <%= link_to 'Расходов', expenditures_path, class: 'dropdown-item' %>
           <%= link_to 'Приход товаров', delivery_from_counterparties_path, class: 'dropdown-item' %>
+          <%= link_to 'Расходов', expenditures_path, class: 'dropdown-item' %>
+          <%= link_to 'Protses proizvodstvo', sale_product_increasers_path, class: 'dropdown-item' %>
           <%= link_to 'Поставщиков', providers_path, class: 'dropdown-item' %>
           <%= link_to 'Покупателей', buyers_path, class: 'dropdown-item' %>
           <%= link_to 'Товар/материалов', products_path, class: 'dropdown-item' %>
@@ -33,6 +34,7 @@
           <%= button_to 'Продажу (alt + 2)', default_create_sales_path, method: :post, class: 'dropdown-item' %>
           <%= button_to 'Приход муки (alt + 5)', default_create_delivery_from_counterparties_path, method: :post, class: 'dropdown-item' %>
           <%= link_to 'Расход (alt + 0)', new_expenditure_path, class: 'dropdown-item' %>
+          <%= link_to 'Protses proizvodstvo', new_sale_product_increaser_path, class: 'dropdown-item' %>
           <%= link_to 'Поставщика', new_provider_path, class: 'dropdown-item' %>
           <%= link_to 'Покупателя', new_buyer_path, class: 'dropdown-item' %>
           <%= link_to 'Товарa/Сырья (alt + 1)', new_product_path, class: 'dropdown-item' %>

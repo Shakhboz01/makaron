@@ -1,0 +1,34 @@
+<br>
+<div class='card' id='filter-toggle'>
+  <%= search_form_for q, url: url, html: { class: 'form form-horizontal filter-form' } do |f| %>
+    <div class="card shadow-lg">
+      <div class='row card-body'>
+        <div class="form-group col-xs-12 col-sm-2">
+          <%= f.label :created_at_gteq, 'Дата от:', class: 'control-label' %>
+          <%= f.text_field :created_at_gteq, value: q.created_at_gteq, class: 'datepicker form-control', autocomplete: :off %>
+        </div>
+        <div class="form-group col-xs-12 col-sm-2">
+          <%= f.label :created_at_lteq, 'Дата до:', class: 'control-label' %>
+          <%= f.text_field :created_at_lteq, value: q.created_at_lteq, class: 'datepicker form-control', autocomplete: :off %>
+        </div>
+        <div class="form-group col-xs-12 col-sm-2">
+          <%= f.label :product_id_eq, 'Товар', class: 'control-label' %>
+          <%= f.select :product_id_eq, Product.pluck(:name, :id) , {include_blank: true}, class: 'form-control' %>
+        </div>
+        <div class="form-group col-xs-12 col-sm-3">
+          <%= simple_fields_for :q_other do |ff| %>
+              <%= ff.label :show_only_for_sales, 'покозать только макароны', class: 'control-label' %>
+              <%= ff.select :show_only_for_sales, [['Да', true], ['Нет', false]], {include_blank: true}, class: 'form-control' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row card-body">
+        <div class="form-group col-xs-12 col-sm-6">
+          <%= f.submit 'Фильтр', class: 'btn btn-primary' %>
+          <%= link_to 'Очистить поиск', request.path, class: 'btn btn-default' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<script>$(function(){$(".datepicker").datepicker({dateFormat: 'dd-mm-yy'})})</script>
