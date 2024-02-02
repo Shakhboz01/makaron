@@ -42,6 +42,12 @@ class ProductEntry < ApplicationRecord
 
   def set_currency
     self.paid_in_usd = product.price_in_usd
+    case product.id
+    when 3 # visshiy
+      Product.find(1).increment!(:initial_remaining, amount * 5)
+    when 4 # 1-sort
+      Product.find(2).increment!(:initial_remaining, amount * 5)
+    end
   end
 
   def amount_sold_is_not_greater_than_amount
@@ -49,6 +55,13 @@ class ProductEntry < ApplicationRecord
   end
 
   def varify_delivery_from_counterparty_is_not_closed
+    case product.id
+    when 3 # visshiy ord
+      Product.find(1).decrement!(:initial_remaining, amount * 5)
+    when 4 # 1-sort ord
+      Product.find(2).decrement!(:initial_remaining, amount * 5)
+    end
+
     throw(:abort) if delivery_from_counterparty.closed? && sell_price == sell_price_before_last_save && amount >= amount_sold
     delivery_from_counterparty.decrement!(:total_price, buy_price)
   end

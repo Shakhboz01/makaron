@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @q = Product.ransack(params[:q])
+    @q = Product.where(for_sale: true).ransack(params[:q])
     @products = @q.result.order(active: :desc).order(name: :asc).page(params[:page]).per(70)
     @product_categories = ProductCategory.all
   end
