@@ -21,7 +21,7 @@ class DeliveryFromCounterpartiesController < ApplicationController
     @product_entries = @q.result
     @product_entry = ProductEntry.new(delivery_from_counterparty_id: @delivery_from_counterparty.id)
     @price_in_percentage = 0
-    @products = Product.active.order(:name)
+    @products = Product.where(for_sale: false).active.order(:name)
     if (product_entries = @delivery_from_counterparty.product_entries).exists?
       @price_in_percentage = product_entries.last.price_in_percentage
       @products = @products.where(for_sale: false).order(:name)
